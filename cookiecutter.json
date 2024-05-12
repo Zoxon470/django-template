@@ -1,0 +1,16 @@
+{
+  "project_name": "test-project",
+  "project_verbose_name": "Test Project",
+  "project_domain": "myapp.com",
+  "your_email": "test@gmail.com",
+  "repository_name": "django-template",
+  "postgres_db": "my-database",
+  "postgres_user": "root",
+  "postgres_password": "root",
+
+  "_extensions": ["jinja2_git.GitExtension"],
+  "_copy_without_render": [
+    ".venv",
+    "docs/_build"
+  ]
+}
