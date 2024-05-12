@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: "{{ cookiecutter.project_name }}-server"
+    restart: always
+    image: "{{ cookiecutter.project_name }}:development"
+    build:
+      context: .
+      args:
+        - ENVIRONMENT=development
+      dockerfile: dockerfiles/app/Dockerfile
+    command: run_dev
+    volumes:
+      - .:/app
+    env_file:
+      - envs/.app-env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    container_name: "{{ cookiecutter.project_name }}-db"
+    restart: unless-stopped
+    image: postgres:15.6
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    env_file:
+      - envs/.postgres-env
+
+volumes:
+  postgres-data:

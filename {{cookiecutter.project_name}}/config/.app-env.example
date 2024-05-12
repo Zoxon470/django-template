@@ -1,0 +1,19 @@
+# === Django ===
+
+# Generate yours with:
+# python3 -c 'from django.utils.crypto import get_random_string; print(get_random_string(50))'
+DJANGO_SECRET_KEY=__CHANGEME__
+DOMAIN_NAME={{ cookiecutter.project_domain }}
+DATABASE_URL=postgres://{{ cookiecutter.postgres_user }}:{{ cookiecutter.postgres_password }}@db:5432/{{ cookiecutter.postgres_db }}
+
+# 5 minutes
+JWT_ACCESS_TOKEN_LIFETIME=5
+EMAIL_USER_SENDER={{ cookiecutter.your_email }}
+EMAIL_URL=smtp://test_user:test_password@test_host:587
+
+# === Cache ===
+REDIS_URL=redis://redis:6379/1
+
+# === Sentry ===
+# If you not using sentry remove this env and sentry init in the production.py file !
+SENTRY_DSN=
