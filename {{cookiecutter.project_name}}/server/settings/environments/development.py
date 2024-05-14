@@ -37,7 +37,7 @@ INSTALLED_APPS += (
     'extra_checks',
 
     # Swagger:
-    'drf_yasg'
+    'drf_spectacular'
 )
 
 # Django debug toolbar:

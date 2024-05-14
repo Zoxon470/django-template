@@ -68,48 +68,50 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db_url("DATABASE_URL")
+    'default': env.db_url('DATABASE_URL')
 }
 DATABASES['default']['CONN_MAX_AGE'] = env.int(
     'CONN_MAX_AGE', default=60
 )
-DATABASES['default']["OPTIONS"] = {
+DATABASES['default']['OPTIONS'] = {
     'connect_timeout': 10,
     'options': '-c statement_timeout=15000ms',
 }
 
-DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S"
+DATETIME_FORMAT = '%d/%m/%Y %H:%M:%S'
 DATETIME_INPUT_FORMATS = [DATETIME_FORMAT]
-DATE_FORMAT = "%d/%m/%Y"
+DATE_FORMAT = '%d/%m/%Y'
 DATE_INPUT_FORMATS = [DATE_FORMAT]
-TIME_FORMAT = "%H:%M:%S"
+TIME_FORMAT = '%H:%M:%S'
 TIME_INPUT_FORMATS = [TIME_FORMAT]
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    "DEFAULT_FILTER_BACKENDS": (
-        "django_filters.rest_framework.DjangoFilterBackend",
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
     ),
-    "DATETIME_FORMAT": "%d/%m/%Y %H:%M:%S",
-    "DATETIME_INPUT_FORMATS": ["%d/%m/%Y %H:%M:%S"],
-    "DATE_FORMAT": "%d/%m/%Y",
-    "DATE_INPUT_FORMATS": ["%d/%m/%Y"],
-    "TIME_FORMAT": "%H:%M:%S",
-    "TIME_INPUT_FORMATS": ["%H:%M:%S"],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DATETIME_FORMAT': '%d/%m/%Y %H:%M:%S',
+    'DATETIME_INPUT_FORMATS': ['%d/%m/%Y %H:%M:%S'],
+    'DATE_FORMAT': '%d/%m/%Y',
+    'DATE_INPUT_FORMATS': ['%d/%m/%Y'],
+    'TIME_FORMAT': '%H:%M:%S',
+    'TIME_INPUT_FORMATS': ['%H:%M:%S'],
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(
-        minutes=env.int("JWT_ACCESS_TOKEN_LIFETIME", 5)
+    'ACCESS_TOKEN_LIFETIME': timedelta(
+        minutes=env.int('JWT_ACCESS_TOKEN_LIFETIME', 5)
     )
 }
 
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
-    }
+SPECTACULAR_SETTINGS = {
+    'TITLE': '{{cookiecutter.project_name}}',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 
@@ -135,12 +137,12 @@ TIME_ZONE = 'UTC'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 STATICFILES_DIRS = [BASE_DIR.joinpath('server/static')]
 STATICFILES_FINDERS = (
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 # Media files
@@ -173,8 +175,8 @@ PASSWORD_HASHERS = [
 # Email configuration
 # https://docs.djangoproject.com/en/4.2/ref/settings/#email-backend
 
-EMAIL_USER_SENDER = env.str("EMAIL_USER_SENDER")
-EMAIL_CONFIG = env.email_url("EMAIL_URL")
+EMAIL_USER_SENDER = env.str('EMAIL_USER_SENDER')
+EMAIL_CONFIG = env.email_url('EMAIL_URL')
 EMAIL_USE_TLS = True
 EMAIL_TIMEOUT = 5
 
