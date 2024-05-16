@@ -1,2 +1,11 @@
 # django-template
-Django template for those who do not want to bother with the structure of the project
+
+### Usage
+
+```
+$ cookiecutter gh:zoxon470/django-template
+$ poetry install 
+$ poetry shell 
+$ export $(grep -v '^#' config/.app-env | xargs)
+$ python manage.py runserver
+```
